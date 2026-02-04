@@ -3,8 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Marleowww – Profile</title>
+  <title>Marleowww</title>
+  <!-- Tab / Favicon Image -->
+  <link rel="icon" type="image/png" href="Marleowww.png">
   <style>
+    :root {
+      --bg-gradient: linear-gradient(135deg, #1d2671, #c33764);
+      --card-bg: #ffffff;
+      --text-main: #333;
+      --text-sub: #555;
+    }
+
+    body.dark {
+      --bg-gradient: linear-gradient(135deg, #0f0f0f, #2b2b2b);
+      --card-bg: #1e1e1e;
+      --text-main: #f0f0f0;
+      --text-sub: #cfcfcf;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -14,7 +30,7 @@
 
     body {
       min-height: 100vh;
-      background: linear-gradient(135deg, #1d2671, #c33764);
+      background: var(--bg-gradient);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -22,6 +38,7 @@
     }
 
     .profile-card {
+      background: var(--card-bg);
       background: #fff;
       width: 100%;
       max-width: 900px; /* increased width */
@@ -74,13 +91,13 @@
     .profile-right h3 {
       font-size: 18px;
       margin-bottom: 10px;
-      color: #333;
+      color: var(--text-main);
     }
 
     .profile-right p {
       font-size: 15px;
       line-height: 1.6;
-      color: #555;
+      color: var(--text-sub);
       margin-bottom: 25px;
     }
 
@@ -121,14 +138,35 @@
         justify-content: center;
       }
     }
+  
+    /* Theme toggle button */
+    .theme-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 44px;
+      height: 44px;
+      cursor: pointer;
+      font-size: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+    }
+
+    body.dark .theme-toggle {
+      background: #2b2b2b;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
+  <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">🌙</button>
   <div class="profile-card">
     <div class="profile-left">
-      <img src="Marleowww.png" class="avatar" />
+      <img src="Marleowww.png" alt="Marleowww Avatar" class="avatar" onerror="this.src='https://via.placeholder.com/160?text=Marleowww'" />
       <h2>Marleowww</h2>
-      <p>Gamer • Student • Creative </p>
+      <p>Gamer • Student • Creative</p>
     </div>
 
     <div class="profile-right">
@@ -149,5 +187,12 @@
       </div>
     </div>
   </div>
+  <script>
+    function toggleTheme() {
+      document.body.classList.toggle('dark');
+      const btn = document.querySelector('.theme-toggle');
+      btn.textContent = document.body.classList.contains('dark') ? '☀️' : '🌙';
+    }
+  </script>
 </body>
 </html>
